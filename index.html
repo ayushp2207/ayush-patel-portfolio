@@ -1,492 +1,501 @@
-import React, { useState } from 'react';
-import { Menu, X, Briefcase, FileText, Video, Target, Lightbulb, Award, Home, Mail, Linkedin, Github } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayush Nimesh Patel - E-Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #c084fc, #f9a8d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-slate-900/95 backdrop-blur-sm z-50 border-b border-purple-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold gradient-text">Ayush Patel</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">Home</a>
+                    <a href="#introduction" class="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">Introduction</a>
+                    <a href="#resume" class="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">Resume</a>
+                    <a href="#about" class="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">About Me</a>
+                    <a href="#strategy" class="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">Job Search Strategy</a>
+                    <a href="#why" class="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">Why Statement</a>
+                    <a href="#accomplishments" class="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">Accomplishments</a>
+                    <a href="#contact" class="text-sm font-medium text-gray-300 hover:text-purple-400 transition-colors">Contact</a>
+                </div>
 
-export default function EPortfolio() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-
-  const scrollToSection = (sectionId) => {
-    setActiveSection(sectionId);
-    setIsMenuOpen(false);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const sections = [
-    { id: 'home', name: 'Home', icon: Home },
-    { id: 'introduction', name: 'Introduction', icon: Video },
-    { id: 'resume', name: 'Resume', icon: FileText },
-    { id: 'about', name: 'About Me', icon: Video },
-    { id: 'strategy', name: 'Job Search Strategy', icon: Target },
-    { id: 'why', name: 'Why Statement', icon: Lightbulb },
-    { id: 'accomplishments', name: 'Accomplishments', icon: Award },
-    { id: 'contact', name: 'Contact', icon: Mail }
-  ];
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-slate-900/95 backdrop-blur-sm z-50 border-b border-purple-500/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Ayush Patel
-              </span>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-purple-400">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-8">
-              {sections.map((section) => (
-                <button
-                  key={section.id}
-                  onClick={() => scrollToSection(section.id)}
-                  className={`text-sm font-medium transition-colors ${
-                    activeSection === section.id
-                      ? 'text-purple-400'
-                      : 'text-gray-300 hover:text-purple-400'
-                  }`}
-                >
-                  {section.name}
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-300 hover:text-purple-400"
-              >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-slate-800 border-t border-purple-500/20">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {sections.map((section) => (
-                <button
-                  key={section.id}
-                  onClick={() => scrollToSection(section.id)}
-                  className="block w-full text-left px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400 hover:bg-slate-700 rounded-md"
-                >
-                  {section.name}
-                </button>
-              ))}
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-800 border-t border-purple-500/20">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400 hover:bg-slate-700 rounded-md">Home</a>
+                <a href="#introduction" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400 hover:bg-slate-700 rounded-md">Introduction</a>
+                <a href="#resume" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400 hover:bg-slate-700 rounded-md">Resume</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400 hover:bg-slate-700 rounded-md">About Me</a>
+                <a href="#strategy" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400 hover:bg-slate-700 rounded-md">Job Search Strategy</a>
+                <a href="#why" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400 hover:bg-slate-700 rounded-md">Why Statement</a>
+                <a href="#accomplishments" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400 hover:bg-slate-700 rounded-md">Accomplishments</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-purple-400 hover:bg-slate-700 rounded-md">Contact</a>
             </div>
-          </div>
-        )}
-      </nav>
-
-      {/* Hero Section */}
-      <section id="home" className="pt-32 pb-20 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="mb-8">
-            <div className="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-purple-400 to-pink-400 p-1">
-              <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center text-6xl font-bold text-purple-400">
-                AP
-              </div>
-            </div>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-            Ayush Nimesh Patel
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-4">
-            MS Computer Science @ Northeastern University
-          </p>
-          <p className="text-lg text-gray-400 mb-8">
-            AI/ML Engineer | Research Assistant | LLM & Deep Learning Specialist
-          </p>
-          <div className="flex justify-center space-x-4 mb-8">
-            <a href="https://linkedin.com/in/ayush-patel" target="_blank" rel="noopener noreferrer" className="p-3 bg-purple-500/20 rounded-full hover:bg-purple-500/30 transition-colors">
-              <Linkedin className="text-purple-400" size={24} />
-            </a>
-            <a href="https://github.com/ayushpatel" target="_blank" rel="noopener noreferrer" className="p-3 bg-purple-500/20 rounded-full hover:bg-purple-500/30 transition-colors">
-              <Github className="text-purple-400" size={24} />
-            </a>
-            <a href="mailto:ayushnpatel22@gmail.com" className="p-3 bg-purple-500/20 rounded-full hover:bg-purple-500/30 transition-colors">
-              <Mail className="text-purple-400" size={24} />
-            </a>
-          </div>
-          <button
-            onClick={() => scrollToSection('introduction')}
-            className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-semibold hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-105"
-          >
-            Explore My Portfolio
-          </button>
         </div>
-      </section>
+    </nav>
 
-      {/* Professional Introduction */}
-      <section id="introduction" className="py-20 px-4 bg-slate-800/50">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center mb-8">
-            <Video className="text-purple-400 mr-3" size={32} />
-            <h2 className="text-4xl font-bold text-white">Professional Introduction</h2>
-          </div>
-          <div className="bg-slate-900/50 rounded-lg p-8 border border-purple-500/20">
-            <div className="aspect-video bg-slate-800 rounded-lg mb-4 flex items-center justify-center">
-              <p className="text-gray-400 text-center px-4">
-                [Insert your Module 4 video embed code here - e.g., YouTube, Vimeo, or Google Drive video]
-              </p>
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-4">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="mb-8">
+                <div class="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-purple-400 to-pink-400 p-1">
+                    <div class="w-full h-full rounded-full bg-slate-800 flex items-center justify-center text-6xl font-bold text-purple-400">
+                        AP
+                    </div>
+                </div>
             </div>
-            <p className="text-gray-300 text-center mb-4">
-              Watch my professional introduction where I discuss my background, passion for AI/ML, and career aspirations.
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">
+                Ayush Nimesh Patel
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-4">
+                MS Computer Science @ Northeastern University
             </p>
-            <div className="mt-4 text-center">
-              <a href="YOUR_MODULE_4_VIDEO_LINK" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 underline text-lg">
-                Watch Full Video →
-              </a>
+            <p class="text-lg text-gray-400 mb-8">
+                AI/ML Engineer | Research Assistant | LLM & Deep Learning Specialist
+            </p>
+            <div class="flex justify-center space-x-4 mb-8">
+                <a href="https://linkedin.com/in/ayush-patel" target="_blank" class="p-3 bg-purple-500/20 rounded-full hover:bg-purple-500/30 transition-colors">
+                    <svg class="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/ayushpatel" target="_blank" class="p-3 bg-purple-500/20 rounded-full hover:bg-purple-500/30 transition-colors">
+                    <svg class="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="mailto:ayushnpatel22@gmail.com" class="p-3 bg-purple-500/20 rounded-full hover:bg-purple-500/30 transition-colors">
+                    <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                </a>
             </div>
-          </div>
+            <a href="#introduction" class="inline-block px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-semibold hover:from-purple-600 hover:to-pink-600 transition-all transform hover:scale-105">
+                Explore My Portfolio
+            </a>
         </div>
-      </section>
+    </section>
 
-      {/* Resume */}
-      <section id="resume" className="py-20 px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex items-center mb-8">
-            <FileText className="text-purple-400 mr-3" size={32} />
-            <h2 className="text-4xl font-bold text-white">Professional Resume</h2>
-          </div>
-          <div className="bg-slate-800/50 rounded-lg p-8 border border-purple-500/20">
-            <div className="bg-white rounded-lg p-8 mb-6">
-              {/* Header */}
-              <div className="text-center mb-6 pb-4 border-b-2 border-gray-300">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">Ayush Nimesh Patel</h3>
-                <p className="text-gray-700">
-                  Boston, MA | (857) 379-6164 | ayushnpatel22@gmail.com | linkedin.com/in/ayush-patel
+    <!-- Professional Introduction -->
+    <section id="introduction" class="py-20 px-4 bg-slate-800/50">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center mb-8">
+                <svg class="text-purple-400 mr-3 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+                <h2 class="text-4xl font-bold text-white">Professional Introduction</h2>
+            </div>
+            <div class="bg-slate-900/50 rounded-lg p-8 border border-purple-500/20">
+                <div class="aspect-video bg-slate-800 rounded-lg mb-4 flex items-center justify-center">
+                    <p class="text-gray-400 text-center px-4">
+                        [Insert your Module 4 video embed code here - YouTube, Vimeo, or Google Drive]
+                    </p>
+                </div>
+                <p class="text-gray-300 text-center mb-4">
+                    Watch my professional introduction where I discuss my background, passion for AI/ML, and career aspirations.
                 </p>
-                <p className="text-gray-600 italic mt-1">Available: Starting May 2026</p>
-              </div>
+                <div class="mt-4 text-center">
+                    <a href="YOUR_MODULE_4_VIDEO_LINK" target="_blank" class="text-purple-400 hover:text-purple-300 underline text-lg">
+                        Watch Full Video →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-              {/* Education */}
-              <div className="mb-6">
-                <h4 className="text-xl font-bold text-purple-600 mb-3 border-b border-purple-200 pb-1">EDUCATION</h4>
-                <div className="mb-3">
-                  <div className="flex justify-between items-start">
+    <!-- Resume -->
+    <section id="resume" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex items-center mb-8">
+                <svg class="text-purple-400 mr-3 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                <h2 class="text-4xl font-bold text-white">Professional Resume</h2>
+            </div>
+            <div class="bg-slate-800/50 rounded-lg p-8 border border-purple-500/20">
+                <div class="bg-white rounded-lg p-8 mb-6 text-gray-900">
+                    <!-- Header -->
+                    <div class="text-center mb-6 pb-4 border-b-2 border-gray-300">
+                        <h3 class="text-3xl font-bold mb-2">Ayush Nimesh Patel</h3>
+                        <p class="text-gray-700">
+                            Boston, MA | (857) 379-6164 | ayushnpatel22@gmail.com | linkedin.com/in/ayush-patel
+                        </p>
+                        <p class="text-gray-600 italic mt-1">Available: Starting May 2026</p>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="mb-6">
+                        <h4 class="text-xl font-bold text-purple-600 mb-3 border-b border-purple-200 pb-1">EDUCATION</h4>
+                        <div class="mb-3">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-bold">Northeastern University</p>
+                                    <p class="text-gray-700">MS in Computer Science</p>
+                                    <p class="text-sm text-gray-600">Coursework: Programming Design, NLP, ML, Algorithms</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-gray-700">Expected May 2027</p>
+                                    <p class="text-gray-600">Boston, MA</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <p class="font-bold">Ahmedabad University</p>
+                                    <p class="text-gray-700">B.Tech in Computer Science Engineering</p>
+                                    <p class="text-sm text-gray-600">Coursework: CV, Probability, Linear Algebra, Cloud Computing</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-gray-700">May 2025</p>
+                                    <p class="text-gray-600">Ahmedabad, Gujarat</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technical Skills -->
+                    <div class="mb-6">
+                        <h4 class="text-xl font-bold text-purple-600 mb-3 border-b border-purple-200 pb-1">TECHNICAL SKILLS</h4>
+                        <div class="space-y-2 text-sm">
+                            <p><span class="font-semibold">Languages:</span> Python, C++, JavaScript, SQL</p>
+                            <p><span class="font-semibold">ML/DL Frameworks:</span> PyTorch, TensorFlow, Keras, scikit-learn, OpenCV, Hugging Face</p>
+                            <p><span class="font-semibold">AI/LLM Tools:</span> Model Context Protocol, Langchain, DSPy, AutoGen, Llama 3, GPT, BERT, Prompt Engineering, RAG</p>
+                            <p><span class="font-semibold">Specialized:</span> Reinforcement Learning (DRL), Computer Vision (CNN-LSTM), NLP, Bayesian Networks, MATLAB</p>
+                        </div>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="mb-6">
+                        <h4 class="text-xl font-bold text-purple-600 mb-3 border-b border-purple-200 pb-1">EXPERIENCE</h4>
+                        
+                        <div class="mb-4">
+                            <div class="flex justify-between items-start mb-1">
+                                <div>
+                                    <p class="font-bold">Research Assistant</p>
+                                    <p class="italic">Wireless IoT Lab, Northeastern University</p>
+                                </div>
+                                <p class="text-gray-600">Sep 2025 – Present</p>
+                            </div>
+                            <ul class="list-disc ml-5 text-sm space-y-1">
+                                <li>Architected and deployed cloud-native MCP server on OpenShift/Kubernetes with Claude AI integration</li>
+                                <li>Engineered dual-proxy gateway enabling LLM tool-calling for equipment reservations</li>
+                                <li>Skills: Docker/Kubernetes, LLM Integration, MCP Protocol, JWT/OAuth, RESTful APIs, MySQL, CI/CD</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="flex justify-between items-start mb-1">
+                                <div>
+                                    <p class="font-bold">Thesis Scholar / Research Assistant</p>
+                                    <p class="italic">Machine Intelligence, Computing and xG Networks Lab</p>
+                                </div>
+                                <p class="text-gray-600">Sep 2023 – Aug 2025</p>
+                            </div>
+                            <ul class="list-disc ml-5 text-sm space-y-1">
+                                <li>Designed Deep Q-Network agent achieving 25% performance improvement in WiFi environments</li>
+                                <li>Developed Gradient Boosting model with 30% QoS improvement over baseline methods</li>
+                                <li>Skills: Deep Reinforcement Learning, Gradient Boosting, Feature Engineering, Neural Networks</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="flex justify-between items-start mb-1">
+                                <div>
+                                    <p class="font-bold">Machine Learning Intern</p>
+                                    <p class="italic">Pibit.ai</p>
+                                </div>
+                                <p class="text-gray-600">May 2024 – Jul 2024</p>
+                            </div>
+                            <ul class="list-disc ml-5 text-sm space-y-1">
+                                <li>Built production-ready RAG pipeline using Langchain, reducing manual iteration time by 60%</li>
+                                <li>Engineered advanced prompting strategies achieving 40% accuracy improvement</li>
+                                <li>Skills: RAG, LLM Fine-tuning, Prompt Engineering, Langchain, DSPy, Azure, MLflow</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Projects -->
+                    <div class="mb-6">
+                        <h4 class="text-xl font-bold text-purple-600 mb-3 border-b border-purple-200 pb-1">PROJECTS</h4>
+                        
+                        <div class="mb-3">
+                            <p class="font-bold">Multi-Calendar GUI Application | Java, Swing, MVC Architecture</p>
+                            <ul class="list-disc ml-5 text-sm space-y-1">
+                                <li>Built feature-rich calendar app with 95%+ test coverage using JUnit</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-3">
+                            <p class="font-bold">6G Blockage Prediction using CNN-LSTM | Deep Learning, PyTorch</p>
+                            <ul class="list-disc ml-5 text-sm space-y-1">
+                                <li>Achieved 90% accuracy for short-term and 80% for longer-term prediction</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-3">
+                            <p class="font-bold">Enhanced SORT for Multi-Object Tracking | TensorFlow</p>
+                            <ul class="list-disc ml-5 text-sm space-y-1">
+                                <li>Achieved 34.15 MOTA score, outperforming standard SORT by 48%</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Publications -->
                     <div>
-                      <p className="font-bold text-gray-900">Northeastern University</p>
-                      <p className="text-gray-700">MS in Computer Science</p>
-                      <p className="text-sm text-gray-600">Coursework: Programming Design, NLP, ML, Algorithms</p>
+                        <h4 class="text-xl font-bold text-purple-600 mb-3 border-b border-purple-200 pb-1">PUBLICATIONS</h4>
+                        <ol class="list-decimal ml-5 text-sm space-y-2">
+                            <li>A. N. Patel and D.K. Patel, "Improving VR Performance in WiFi-6 using Deep Reinforcement Learning", IEEE COMSNETS 2025 (Best UG Presentation Award)</li>
+                            <li>R.D., K.K., A.N. Patel, D.K.P., "Rand-PC: A Randomized Skeleton Learning Algorithm", IEEE TNNLS (Under Review)</li>
+                        </ol>
                     </div>
-                    <div className="text-right">
-                      <p className="text-gray-700">Expected May 2027</p>
-                      <p className="text-gray-600">Boston, MA</p>
-                    </div>
-                  </div>
                 </div>
-                <div>
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="font-bold text-gray-900">Ahmedabad University</p>
-                      <p className="text-gray-700">B.Tech in Computer Science Engineering</p>
-                      <p className="text-sm text-gray-600">Coursework: CV, Probability, Linear Algebra, Cloud Computing</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-gray-700">May 2025</p>
-                      <p className="text-gray-600">Ahmedabad, Gujarat</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Technical Skills */}
-              <div className="mb-6">
-                <h4 className="text-xl font-bold text-purple-600 mb-3 border-b border-purple-200 pb-1">TECHNICAL SKILLS</h4>
-                <div className="space-y-2 text-sm">
-                  <p className="text-gray-800"><span className="font-semibold">Languages:</span> Python, C++, JavaScript, SQL</p>
-                  <p className="text-gray-800"><span className="font-semibold">ML/DL Frameworks:</span> PyTorch, TensorFlow, Keras, scikit-learn, OpenCV, Hugging Face</p>
-                  <p className="text-gray-800"><span className="font-semibold">AI/LLM Tools:</span> Model Context Protocol, Langchain, DSPy, AutoGen, Llama 3, GPT, BERT, Prompt Engineering, RAG</p>
-                  <p className="text-gray-800"><span className="font-semibold">Specialized:</span> Reinforcement Learning (DRL), Computer Vision (CNN-LSTM), NLP, Bayesian Networks, MATLAB</p>
-                </div>
-              </div>
-
-              {/* Experience */}
-              <div className="mb-6">
-                <h4 className="text-xl font-bold text-purple-600 mb-3 border-b border-purple-200 pb-1">EXPERIENCE</h4>
                 
-                <div className="mb-4">
-                  <div className="flex justify-between items-start mb-1">
-                    <div>
-                      <p className="font-bold text-gray-900">Research Assistant</p>
-                      <p className="text-gray-700 italic">Wireless IoT Lab, Northeastern University</p>
-                    </div>
-                    <p className="text-gray-600">Sep 2025 – Present</p>
-                  </div>
-                  <ul className="list-disc ml-5 text-sm text-gray-700 space-y-1">
-                    <li>Architected and deployed cloud-native MCP server on OpenShift/Kubernetes with Claude AI integration via containerized microservices</li>
-                    <li>Engineered dual-proxy gateway enabling LLM tool-calling for equipment reservations with RESTful API and JWT/API-key middleware</li>
-                    <li>Skills: Docker/Kubernetes, LLM Integration, MCP Protocol, JWT/OAuth, RESTful APIs, MySQL, CI/CD, Cloud-Native</li>
-                  </ul>
+                <div class="text-center">
+                    <a href="YOUR_RESUME_PDF_LINK" target="_blank" class="px-6 py-3 bg-purple-500 rounded-lg text-white font-semibold hover:bg-purple-600 inline-block transition-colors">
+                        Download Resume (PDF)
+                    </a>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div className="mb-4">
-                  <div className="flex justify-between items-start mb-1">
-                    <div>
-                      <p className="font-bold text-gray-900">Thesis Scholar / Research Assistant</p>
-                      <p className="text-gray-700 italic">Machine Intelligence, Computing and xG Networks Lab</p>
-                    </div>
-                    <p className="text-gray-600">Sep 2023 – Aug 2025</p>
-                  </div>
-                  <ul className="list-disc ml-5 text-sm text-gray-700 space-y-1">
-                    <li>Designed and trained Deep Q-Network agent for dynamic channel access, achieving 25% performance improvement</li>
-                    <li>Developed Gradient Boosting classification model for handover prediction with 30% QoS improvement over baseline</li>
-                    <li>Skills: Deep Reinforcement Learning, Gradient Boosting, Feature Engineering, Neural Networks, Python</li>
-                  </ul>
+    <!-- Tell Me About Yourself -->
+    <section id="about" class="py-20 px-4 bg-slate-800/50">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center mb-8">
+                <svg class="text-purple-400 mr-3 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+                <h2 class="text-4xl font-bold text-white">Tell Me About Yourself</h2>
+            </div>
+            <div class="bg-slate-900/50 rounded-lg p-8 border border-purple-500/20">
+                <div class="aspect-video bg-slate-800 rounded-lg mb-4 flex items-center justify-center">
+                    <p class="text-gray-400 text-center px-4">
+                        [Insert your Module 8 video embed code here]
+                    </p>
                 </div>
-
-                <div className="mb-4">
-                  <div className="flex justify-between items-start mb-1">
-                    <div>
-                      <p className="font-bold text-gray-900">Machine Learning Intern</p>
-                      <p className="text-gray-700 italic">Pibit.ai</p>
-                    </div>
-                    <p className="text-gray-600">May 2024 – Jul 2024</p>
-                  </div>
-                  <ul className="list-disc ml-5 text-sm text-gray-700 space-y-1">
-                    <li>Built production-ready RAG pipeline using Langchain, reducing manual iteration time by 60%</li>
-                    <li>Engineered advanced prompting strategies achieving 40% accuracy improvement with Azure deployment</li>
-                    <li>Skills: RAG, LLM Fine-tuning, Prompt Engineering, Langchain, DSPy, Azure, MLflow, Vector Databases</li>
-                  </ul>
+                <p class="text-gray-300 text-center mb-4">
+                    Watch my personal pitch where I share my journey and what drives me as a technologist.
+                </p>
+                <div class="mt-4 text-center">
+                    <a href="YOUR_MODULE_8_VIDEO_LINK" target="_blank" class="text-purple-400 hover:text-purple-300 underline text-lg">
+                        Watch Full Video →
+                    </a>
                 </div>
-              </div>
+            </div>
+        </div>
+    </section>
 
-              {/* Projects */}
-              <div className="mb-6">
-                <h4 className="text-xl font-bold text-purple-600 mb-3 border-b border-purple-200 pb-1">PROJECTS</h4>
+    <!-- Job Search Strategy -->
+    <section id="strategy" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center mb-8">
+                <svg class="text-purple-400 mr-3 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <h2 class="text-4xl font-bold text-white">Job Search Strategy Plan</h2>
+            </div>
+            <div class="bg-slate-800/50 rounded-lg p-8 border border-purple-500/20">
+                <div class="space-y-6 text-gray-300">
+                    <div>
+                        <h3 class="text-2xl font-semibold text-purple-400 mb-3">Target Companies</h3>
+                        <p class="mb-2">[Add your Module 9 target companies here]</p>
+                        <ul class="list-disc ml-6 space-y-1">
+                            <li>Major Tech: Google, Microsoft, Amazon, Meta, Apple</li>
+                            <li>AI-First Companies: OpenAI, Anthropic, Hugging Face, Scale AI</li>
+                            <li>Research Labs: NVIDIA Research, DeepMind, Allen Institute for AI</li>
+                            <li>Startups: AI/ML focused startups in Boston area</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-semibold text-purple-400 mb-3">Target Roles</h3>
+                        <ul class="list-disc ml-6 space-y-1">
+                            <li>Machine Learning Engineer Co-op</li>
+                            <li>AI Research Intern</li>
+                            <li>Software Engineer - ML/AI Focus</li>
+                            <li>Deep Learning Engineer</li>
+                            <li>NLP Engineer</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-semibold text-purple-400 mb-3">Search Strategy</h3>
+                        <ul class="list-disc ml-6 space-y-2">
+                            <li>Leverage Northeastern's co-op network and career services</li>
+                            <li>Network through LinkedIn with alumni working in AI/ML roles</li>
+                            <li>Attend AI/ML conferences and meetups in Boston area</li>
+                            <li>Contribute to open-source AI projects to build visibility</li>
+                            <li>Apply to 15-20 positions per week aligned with my skills</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-semibold text-purple-400 mb-3">Timeline</h3>
+                        <ul class="list-disc ml-6 space-y-1">
+                            <li>December 2025 - January 2026: Network and research companies</li>
+                            <li>January - February 2026: Submit applications for May 2026 start</li>
+                            <li>February - March 2026: Interview preparation and interviews</li>
+                            <li>March - April 2026: Final interviews and offer evaluation</li>
+                            <li>May 2026: Co-op start date</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Statement -->
+    <section id="why" class="py-20 px-4 bg-slate-800/50">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center mb-8">
+                <svg class="text-purple-400 mr-3 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                </svg>
+                <h2 class="text-4xl font-bold text-white">"Why" Statement</h2>
+            </div>
+            <div class="bg-slate-900/50 rounded-lg p-8 border border-purple-500/20">
+                <blockquote class="text-xl text-gray-300 leading-relaxed border-l-4 border-purple-400 pl-6">
+                    [Insert your Module A "Why" statement here - This is your compelling narrative about why you chose computer science and what drives you]
+                    <br/><br/>
+                    Example: "My journey into computer science began with a fascination for how intelligent systems can solve complex real-world problems. During my undergraduate research, I experienced firsthand the transformative power of deep reinforcement learning in optimizing wireless networks, achieving a 25% performance improvement. This passion led me to Northeastern University, where I'm now architecting cloud-native LLM systems and pushing the boundaries of AI integration..."
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accomplishment Stories -->
+    <section id="accomplishments" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center mb-8">
+                <svg class="text-purple-400 mr-3 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                </svg>
+                <h2 class="text-4xl font-bold text-white">Accomplishment Stories</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-slate-800/50 rounded-lg p-8 border border-purple-500/20">
+                    <h3 class="text-2xl font-semibold text-purple-400 mb-4">Deep Reinforcement Learning for WiFi Optimization</h3>
+                    <div class="text-gray-300 space-y-3">
+                        <p><strong class="text-purple-300">Situation:</strong> The Wireless IoT Lab needed to optimize WiFi-6 network performance for VR applications, but traditional approaches weren't adapting well to dynamic channel conditions.</p>
+                        <p><strong class="text-purple-300">Task:</strong> Design and implement a deep reinforcement learning system that could dynamically optimize channel access in real-time.</p>
+                        <p><strong class="text-purple-300">Action:</strong> I architected a Deep Q-Network agent using PyTorch with custom reward shaping and experience replay mechanisms, iterating through multiple configurations over four months.</p>
+                        <p><strong class="text-purple-300">Result:</strong> Achieved 25% performance improvement. Published at IEEE COMSNETS 2025 and received Best Undergraduate Presentation Award.</p>
+                    </div>
+                </div>
                 
-                <div className="mb-3">
-                  <p className="font-bold text-gray-900">Multi-Calendar GUI Application | Java, Swing, MVC Architecture</p>
-                  <ul className="list-disc ml-5 text-sm text-gray-700 space-y-1">
-                    <li>Built feature-rich calendar app with Swing GUI, supporting complex event and calendar management</li>
-                    <li>Designed using MVC pattern with 95%+ test coverage using JUnit and mock objects</li>
-                  </ul>
+                <div class="bg-slate-800/50 rounded-lg p-8 border border-purple-500/20">
+                    <h3 class="text-2xl font-semibold text-purple-400 mb-4">Production RAG Pipeline at Pibit.ai</h3>
+                    <div class="text-gray-300 space-y-3">
+                        <p><strong class="text-purple-300">Situation:</strong> Pibit.ai was struggling with manual prompt engineering processes taking days of manual testing with inconsistent results.</p>
+                        <p><strong class="text-purple-300">Task:</strong> Build a production-ready RAG pipeline that could automate prompt optimization and significantly reduce iteration time.</p>
+                        <p><strong class="text-purple-300">Action:</strong> Designed complete RAG pipeline using Langchain with vector embeddings, integrated DSPy for automation, and deployed on Azure with MLflow tracking.</p>
+                        <p><strong class="text-purple-300">Result:</strong> Reduced manual iteration time by 60% and achieved 40% accuracy improvement. Pipeline deployed to production processing thousands of queries daily.</p>
+                    </div>
                 </div>
 
-                <div className="mb-3">
-                  <p className="font-bold text-gray-900">6G Blockage Prediction using CNN-LSTM | Deep Learning, PyTorch</p>
-                  <ul className="list-disc ml-5 text-sm text-gray-700 space-y-1">
-                    <li>Developed CNN-LSTM architecture for mmWave link blockage prediction in 6G networks</li>
-                    <li>Achieved 90% accuracy for short-term and 80% for longer-term prediction</li>
-                  </ul>
+                <div class="bg-slate-800/50 rounded-lg p-8 border border-purple-500/20">
+                    <h3 class="text-2xl font-semibold text-purple-400 mb-4">Cloud-Native MCP Server at Northeastern</h3>
+                    <div class="text-gray-300 space-y-3">
+                        <p><strong class="text-purple-300">Situation:</strong> The Wireless IoT Lab needed a scalable system for equipment reservations that could integrate with Claude AI for natural language interactions.</p>
+                        <p><strong class="text-purple-300">Task:</strong> Architect and deploy a cloud-native Model Context Protocol server with multi-user authentication and LLM integration.</p>
+                        <p><strong class="text-purple-300">Action:</strong> Designed microservices architecture on OpenShift/Kubernetes, built dual-proxy gateway for LLM tool-calling, implemented JWT/LDAP auth, and established CI/CD pipeline.</p>
+                        <p><strong class="text-purple-300">Result:</strong> Production system now used by 50+ lab members handling 200+ reservations monthly with zero conflicts. Became reference implementation for LLM integration.</p>
+                    </div>
                 </div>
-
-                <div className="mb-3">
-                  <p className="font-bold text-gray-900">Enhanced SORT for Multi-Object Tracking | Object-Tracking, TensorFlow</p>
-                  <ul className="list-disc ml-5 text-sm text-gray-700 space-y-1">
-                    <li>Enhanced SORT algorithm with ResNet50 feature extraction and cosine similarity matching</li>
-                    <li>Achieved 34.15 MOTA score, outperforming standard SORT by 48% on MOT17 benchmark</li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Publications */}
-              <div>
-                <h4 className="text-xl font-bold text-purple-600 mb-3 border-b border-purple-200 pb-1">PUBLICATIONS</h4>
-                <ol className="list-decimal ml-5 text-sm text-gray-700 space-y-2">
-                  <li>A. N. Patel and D.K. Patel, "Improving VR Performance in WiFi-6 using Deep Reinforcement Learning based Spatial Reuse", 2025 17th IEEE International COMSNETS (Best UG Presentation Award)</li>
-                  <li>R.D., K.K., A.N. Patel, D.K.P., "Rand-PC: A Randomized Skeleton Learning Algorithm", IEEE Transactions on Neural Networks and Learning Systems (Under Review)</li>
-                </ol>
-              </div>
             </div>
-            
-            <div className="text-center">
-              <a href="YOUR_RESUME_PDF_LINK" target="_blank" rel="noopener noreferrer" className="px-6 py-3 bg-purple-500 rounded-lg text-white font-semibold hover:bg-purple-600 inline-block transition-colors">
-                Download Resume (PDF)
-              </a>
-            </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      {/* Tell Me About Yourself */}
-      <section id="about" className="py-20 px-4 bg-slate-800/50">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center mb-8">
-            <Video className="text-purple-400 mr-3" size={32} />
-            <h2 className="text-4xl font-bold text-white">Tell Me About Yourself</h2>
-          </div>
-          <div className="bg-slate-900/50 rounded-lg p-8 border border-purple-500/20">
-            <div className="aspect-video bg-slate-800 rounded-lg mb-4 flex items-center justify-center">
-              <p className="text-gray-400 text-center px-4">
-                [Insert your Module 8 video embed code here]
-              </p>
+    <!-- Contact -->
+    <section id="contact" class="py-20 px-4 bg-slate-800/50">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex items-center justify-center mb-8">
+                <svg class="text-purple-400 mr-3 w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <h2 class="text-4xl font-bold text-white">Get In Touch</h2>
             </div>
-            <p className="text-gray-300 text-center mb-4">
-              Watch my personal pitch where I share my journey from B.Tech to MS in Computer Science, my passion for AI/ML research, and what drives me as a technologist.
+            <p class="text-xl text-gray-300 mb-8">
+                I'm currently seeking co-op opportunities starting May 2026 in AI/ML Engineering roles. Let's connect!
             </p>
-            <div className="mt-4 text-center">
-              <a href="YOUR_MODULE_8_VIDEO_LINK" target="_blank" rel="noopener noreferrer" className="text-purple-400 hover:text-purple-300 underline text-lg">
-                Watch Full Video →
-              </a>
+            <div class="space-y-4 text-gray-300 text-lg">
+                <p>
+                    <strong class="text-purple-400">Email:</strong> 
+                    <a href="mailto:ayushnpatel22@gmail.com" class="hover:text-purple-300 underline">ayushnpatel22@gmail.com</a>
+                </p>
+                <p>
+                    <strong class="text-purple-400">Phone:</strong> 
+                    <a href="tel:+18573796164" class="hover:text-purple-300">(857) 379-6164</a>
+                </p>
+                <p>
+                    <strong class="text-purple-400">LinkedIn:</strong> 
+                    <a href="https://linkedin.com/in/ayush-patel" target="_blank" class="hover:text-purple-300 underline">linkedin.com/in/ayush-patel</a>
+                </p>
+                <p>
+                    <strong class="text-purple-400">Location:</strong> Boston, Massachusetts
+                </p>
             </div>
-          </div>
         </div>
-      </section>
+    </section>
 
-      {/* Job Search Strategy */}
-      <section id="strategy" className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center mb-8">
-            <Target className="text-purple-400 mr-3" size={32} />
-            <h2 className="text-4xl font-bold text-white">Job Search Strategy Plan</h2>
-          </div>
-          <div className="bg-slate-800/50 rounded-lg p-8 border border-purple-500/20">
-            <div className="space-y-6 text-gray-300">
-              <div>
-                <h3 className="text-2xl font-semibold text-purple-400 mb-3">Target Companies</h3>
-                <p className="mb-2">[Add your Module 9 target companies here, for example:]</p>
-                <ul className="list-disc ml-6 space-y-1">
-                  <li>Major Tech: Google, Microsoft, Amazon, Meta, Apple</li>
-                  <li>AI-First Companies: OpenAI, Anthropic, Hugging Face, Scale AI</li>
-                  <li>Research Labs: NVIDIA Research, DeepMind, Allen Institute for AI</li>
-                  <li>Startups: AI/ML focused startups in Boston area</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-2xl font-semibold text-purple-400 mb-3">Target Roles</h3>
-                <p className="mb-2">[List your target positions, such as:]</p>
-                <ul className="list-disc ml-6 space-y-1">
-                  <li>Machine Learning Engineer Co-op</li>
-                  <li>AI Research Intern</li>
-                  <li>Software Engineer - ML/AI Focus</li>
-                  <li>Deep Learning Engineer</li>
-                  <li>NLP Engineer</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-2xl font-semibold text-purple-400 mb-3">Search Strategy</h3>
-                <p>[Describe your approach from Module 9, for example:]</p>
-                <ul className="list-disc ml-6 space-y-2 mt-2">
-                  <li>Leverage Northeastern's co-op network and career services</li>
-                  <li>Network through LinkedIn with alumni working in AI/ML roles</li>
-                  <li>Attend AI/ML conferences and meetups in Boston area</li>
-                  <li>Contribute to open-source AI projects to build visibility</li>
-                  <li>Apply to 15-20 positions per week aligned with my skills</li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-2xl font-semibold text-purple-400 mb-3">Timeline</h3>
-                <p>[Add your job search timeline from Module 9, such as:]</p>
-                <ul className="list-disc ml-6 space-y-1 mt-2">
-                  <li>December 2025 - January 2026: Network and research companies</li>
-                  <li>January - February 2026: Submit applications for May 2026 start</li>
-                  <li>February - March 2026: Interview preparation and interviews</li>
-                  <li>March - April 2026: Final interviews and offer evaluation</li>
-                  <li>May 2026: Co-op start date</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-8 px-4 border-t border-purple-500/20">
+        <div class="max-w-7xl mx-auto text-center text-gray-400">
+            <p>© 2024 Ayush Nimesh Patel. All rights reserved.</p>
+            <p class="text-sm mt-2">Available for Co-op opportunities starting May 2026</p>
         </div>
-      </section>
+    </footer>
 
-      {/* Why Statement */}
-      <section id="why" className="py-20 px-4 bg-slate-800/50">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center mb-8">
-            <Lightbulb className="text-purple-400 mr-3" size={32} />
-            <h2 className="text-4xl font-bold text-white">"Why" Statement</h2>
-          </div>
-          <div className="bg-slate-900/50 rounded-lg p-8 border border-purple-500/20">
-            <blockquote className="text-xl text-gray-300 leading-relaxed border-l-4 border-purple-400 pl-6">
-              [Insert your Module A "Why" statement here. This should be your compelling narrative about why you chose computer science, what drives your passion for AI/ML, and what you hope to achieve in your career. For example:]
-              <br/><br/>
-              "My journey into computer science began with a fascination for how intelligent systems can solve complex real-world problems. During my undergraduate research at Ahmedabad University, I experienced firsthand the transformative power of deep reinforcement learning in optimizing wireless networks. Achieving a 25% performance improvement through my DQN implementation wasn't just about the metrics—it was about understanding how AI can fundamentally reshape communication systems.
-              <br/><br/>
-              This passion led me to Northeastern University, where I'm now architecting cloud-native LLM systems and pushing the boundaries of what's possible with Model Context Protocol. I'm driven by the challenge of making AI systems not just powerful, but practical and accessible. My internship at Pibit.ai, where I reduced manual iteration time by 60% through RAG pipeline optimization, reinforced my belief that the future lies in building AI tools that empower others.
-              <br/><br/>
-              I envision a career at the intersection of research and applied AI, where I can contribute to breakthrough innovations while ensuring these technologies create real value. Whether it's through my published research on WiFi-6 optimization or my work on 6G blockage prediction, my goal remains constant: to build intelligent systems that make a meaningful impact on how we live and work."
-            </blockquote>
-          </div>
-        </div>
-      </section>
+    <!-- Mobile Menu Script -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-      {/* Accomplishment Stories */}
-      <section id="accomplishments" className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center mb-8">
-            <Award className="text-purple-400 mr-3" size={32} />
-            <h2 className="text-4xl font-bold text-white">Accomplishment Stories</h2>
-          </div>
-          <div className="space-y-6">
-            <div className="bg-slate-800/50 rounded-lg p-8 border border-purple-500/20">
-              <h3 className="text-2xl font-semibold text-purple-400 mb-4">Deep Reinforcement Learning for WiFi Optimization</h3>
-              <div className="text-gray-300 space-y-3">
-                <p><strong className="text-purple-300">Situation:</strong> The Wireless IoT Lab needed to optimize WiFi-6 network performance for VR applications, but traditional approaches weren't adapting well to dynamic channel conditions. As a thesis scholar, I was tasked with developing an intelligent solution.</p>
-                <p><strong className="text-purple-300">Task:</strong> Design and implement a deep reinforcement learning system that could dynamically optimize channel access in real-time, improving network performance for latency-sensitive VR traffic while maintaining overall quality of service.</p>
-                <p><strong className="text-purple-300">Action:</strong> I architected a Deep Q-Network (DQN) agent from scratch using PyTorch, implementing custom reward shaping mechanisms to balance throughput and latency. I developed an experience replay system to stabilize training and created a comprehensive testing framework using MATLAB simulations. Over four months, I iterated through multiple reward function designs and hyperparameter configurations.</p>
-                <p><strong className="text-purple-300">Result:</strong> Achieved 25% performance improvement over baseline methods. The research was published at IEEE COMSNETS 2025 and received the Best Undergraduate Presentation Award. The solution is now being considered for real-world deployment in the university's wireless infrastructure.</p>
-              </div>
-            </div>
-            
-            <div className="bg-slate-800/50 rounded-lg p-8 border border-purple-500/20">
-              <h3 className="text-2xl font-semibold text-purple-400 mb-4">Production RAG Pipeline at Pibit.ai</h3>
-              <div className="text-gray-300 space-y-3">
-                <p><strong className="text-purple-300">Situation:</strong> During my internship at Pibit.ai, the company was struggling with manual prompt engineering processes that were taking significant time and yielding inconsistent results for their document retrieval system. Each iteration required days of manual testing.</p>
-                <p><strong className="text-purple-300">Task:</strong> Build a production-ready Retrieval-Augmented Generation pipeline that could automate prompt optimization and significantly reduce the time needed for iterations while improving accuracy.</p>
-                <p><strong className="text-purple-300">Action:</strong> I designed and implemented a complete RAG pipeline using Langchain with vector embeddings for semantic document retrieval. I integrated the DSPy framework to automate prompt optimization, eliminating manual trial-and-error. I also engineered advanced prompting strategies including Few-Shot learning, Chain-of-Thought reasoning, and ReAct patterns. Finally, I deployed the system on Azure with MLflow for experiment tracking and set up A/B testing infrastructure.</p>
-                <p><strong className="text-purple-300">Result:</strong> Reduced manual iteration time by 60% and achieved 40% accuracy improvement over the baseline system. The pipeline was deployed to production and is now processing thousands of queries daily. The framework I built became a template for future ML projects at the company.</p>
-              </div>
-            </div>
+        // Close mobile menu when a link is clicked
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
 
-            <div className="bg-slate-800/50 rounded-lg p-8 border border-purple-500/20">
-              <h3 className="text-2xl font-semibold text-purple-400 mb-4">Cloud-Native MCP Server at Northeastern</h3>
-              <div className="text-gray-300 space-y-3">
-                <p><strong className="text-purple-300">Situation:</strong> The Wireless IoT Lab at Northeastern needed a scalable system for equipment reservations that could integrate with Claude AI for natural language interactions. The existing system was manual and prone to scheduling conflicts.</p>
-                <p><strong className="text-purple-300">Task:</strong> Architect and deploy a cloud-native Model Context Protocol server that could handle multi-user authentication, integrate with LLMs for natural language processing, and provide reliable equipment reservation capabilities.</p>
-                <p><strong className="text-purple-300">Action:</strong> I designed a microservices architecture deployed on OpenShift/Kubernetes, implementing containerized services with Docker. I built a dual-proxy gateway that enabled Claude AI to perform tool-calling for equipment reservations through a RESTful API. I implemented secure multi-user authentication using JWT tokens and LDAP integration, along with MySQL-backed session management. I also established a CI/CD pipeline for automated testing and deployment.</p>
-                <p><strong className="text-purple-300">Result:</strong> Successfully deployed a production system now used by 50+ lab members for equipment scheduling. The system handles 200+ reservations per month with zero scheduling conflicts. The architecture has become a reference implementation for other labs considering LLM integration. The project showcased the practical application of Model Context Protocol in academic settings.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="py-20 px-4 bg-slate-800/50">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="flex items-center justify-center mb-8">
-            <Mail className="text-purple-400 mr-3" size={32} />
-            <h2 className="text-4xl font-bold text-white">Get In Touch</h2>
-          </div>
-          <p className="text-xl text-gray-300 mb-8">
-            I'm currently seeking co-op opportunities starting May 2026 in AI/ML Engineering roles. Let's connect!
-          </p>
-          <div className="space-y-4 text-gray-300 text-lg">
-            <p>
-              <strong className="text-purple-400">Email:</strong> <a href="mailto:ayushnpatel22@gmail.com" className="hover:text-purple-300 underline">ayushnpatel22@gmail.com</a>
-            </p>
-            <p>
-              <strong className="text-purple-400">Phone:</strong> <a href="tel:+18573796164" className="hover:text-purple-300">(857) 379-6164</a>
-            </p>
-            <p>
-              <strong className="text-purple-400">LinkedIn:</strong> <a href="https://linkedin.com/in/ayush-patel" target="_blank" rel="noopener noreferrer" className="hover:text-purple-300 underline">linkedin.com/in/ayush-patel</a>
-            </p>
-            <p>
-              <strong className="text-purple-400">Location:</strong> Boston, Massachusetts
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 py-8 px-4 border-t border-purple-500/20">
-        <div className="max-w-7xl mx-auto text-center text-gray-400">
-          <p>© 2024 Ayush Nimesh Patel. All rights reserved.</p>
-          <p className="text-sm mt-2">Available for Co-op opportunities starting May 2026</p>
-        </div>
-      </footer>
-    </div>
-  );
-}
+</body>
+</html>
